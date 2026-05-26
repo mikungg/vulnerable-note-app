@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Check User{% endblock %}
+{% block content %}
+<div class="card form-card">
+  <h2>Check Username</h2>
+  <p class="hint">Look up how many notes a user has written.</p>
+
+  <form method="GET" action="{{ url_for('check_user') }}">
+    <label>Username
+      <input type="text" name="username" value="{{ request.args.get('username', '') }}" autocomplete="off" />
+    </label>
+    <button type="submit" class="btn">Check</button>
+  </form>
+
+  {% if msg %}
+    <div class="alert alert-info mt">{{ msg }}</div>
+  {% endif %}
+</div>
+{% endblock %}

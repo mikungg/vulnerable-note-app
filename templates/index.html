@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Home – Notes App{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Welcome to Notes App</h1>
+  {% if user %}
+    <p>Hello, <strong>{{ user.username }}</strong>! Go to your <a href="{{ url_for('dashboard') }}">Dashboard</a> to manage your notes.</p>
+  {% else %}
+    <p>A simple, secure note-taking application.</p>
+    <div class="form-footer">
+      <a href="{{ url_for('login') }}" class="btn">Login</a>
+      <a href="{{ url_for('register') }}" class="btn">Register</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

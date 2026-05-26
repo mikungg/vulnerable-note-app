@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="dashboard-header">
+  <h2>Your Notes</h2>
+  <a class="btn" href="{{ url_for('new_note') }}">+ New Note</a>
+</div>
+
+{% if admin_flag %}
+<div class="card admin-flag">
+  <strong>Admin Panel</strong>
+  <p>Message: <code>{{ admin_flag }}</code></p>
+</div>
+{% endif %}
+
+{% if notes %}
+  <div class="notes-grid">
+    {% for note in notes %}
+    <a class="note-card" href="{{ url_for('view_note', note_id=note.id) }}">
+      <h3>{{ note.title }}</h3>
+      <p>{{ note.content[:80] | striptags }}{% if note.content|length > 80 %}…{% endif %}</p>
+      <small>Note #{{ note.id }}</small>
+    </a>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="empty-state">No notes yet. <a href="{{ url_for('new_note') }}">Create your first note.</a></p>
+{% endif %}
+{% endblock %}

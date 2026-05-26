@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ note.title }}{% endblock %}
+{% block content %}
+<div class="card note-view">
+  <h2>{{ note.title }}</h2>
+  <div class="note-body">{{ note.content | safe }}</div>
+
+  <p class="note-info">Note #{{ note.id }} · owner id: {{ note.user_id }}</p>
+  {% if user %}
+    <span id="flag" style="display:none">REDACTED</span>
+  {% endif %}
+
+  <a class="btn btn-secondary mt" href="{{ url_for('dashboard') }}">← Back</a>
+</div>
+{% endblock %}

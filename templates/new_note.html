@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}New Note{% endblock %}
+{% block content %}
+<div class="card form-card wide">
+  <h2>New Note</h2>
+  <p class="hint">Rich content is supported. Your input is sanitized client-side before saving.</p>
+
+  {% if error %}
+    <div class="alert alert-error">{{ error }}</div>
+  {% endif %}
+  <form id="note-form" method="POST" action="{{ url_for('new_note') }}">
+    <label>Title
+      <input type="text" name="title" required />
+    </label>
+
+    <label>Content
+      <textarea id="raw-content" rows="7" placeholder="Write your note here…"></textarea>
+    </label>
+
+    <input type="hidden" name="content" id="safe-content" />
+
+    <button type="submit" class="btn">Save Note</button>
+  </form>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+<script nonce="{{ csp_nonce }}">
+  document.getElementById('note-form').addEventListener('submit', function(e) {
+    var raw = document.getElementById('raw-content').value;
+    var clean = DOMPurify.sanitize(raw);
+    document.getElementById('safe-content').value = clean;
+  });
+</script>
+{% endblock %}

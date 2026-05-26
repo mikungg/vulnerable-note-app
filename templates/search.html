@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Search{% endblock %}
+{% block content %}
+<div class="card form-card wide">
+  <h2>Search Notes</h2>
+
+  <form method="GET" action="{{ url_for('search') }}">
+    <div class="search-row">
+      <input type="text" name="q" value="{{ query }}" placeholder="Search by title…" autocomplete="off" />
+      <button type="submit" class="btn">Search</button>
+    </div>
+  </form>
+
+  {% if query %}
+    <p class="search-label">Results for: <strong>{{ query }}</strong></p>
+  {% endif %}
+
+  {% if results %}
+    <div class="notes-grid">
+      {% for note in results %}
+      <a class="note-card" href="{{ url_for('view_note', note_id=note.id) }}">
+        <h3>{{ note.title }}</h3>
+        <p>{{ note.content[:80] | striptags }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  {% elif query %}
+    <p class="empty-state">No notes found.</p>
+  {% endif %}
+
+  {% if user %}
+    <span id="flag" style="display:none">REDACTED</span>
+  {% endif %}
+</div>
+
+<script nonce="{{ csp_nonce }}">
+  var searchTerm = "{{ query | safe }}";
+</script>
+{% endblock %}

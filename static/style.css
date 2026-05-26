@@ -1,0 +1,210 @@
+/* ── reset & base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  background: #f4f5f7;
+  color: #1a1a2e;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: #4361ee; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── navbar ───────────────────────────────────────────────── */
+.navbar {
+  background: #1a1a2e;
+  padding: 0 2rem;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.brand {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+.nav-links a { color: #b0b8d8; font-size: 0.9rem; }
+.nav-links a:hover { color: #fff; text-decoration: none; }
+.nav-user { color: #fff; font-size: 0.9rem; }
+.badge-admin {
+  background: #e63946;
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* ── layout ───────────────────────────────────────────────── */
+.container {
+  max-width: 860px;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  flex: 1;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  color: #888;
+  font-size: 0.8rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* ── card ─────────────────────────────────────────────────── */
+.card {
+  background: #fff;
+  border: 1px solid #e0e4ef;
+  border-radius: 10px;
+  padding: 1.8rem;
+}
+
+/* ── forms ────────────────────────────────────────────────── */
+.form-card { max-width: 440px; margin: 0 auto; }
+.form-card.wide { max-width: 640px; }
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #444;
+}
+input[type="text"],
+input[type="password"],
+textarea {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #cdd2e0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #4361ee;
+}
+textarea { resize: vertical; }
+
+.form-footer { margin-top: 1rem; font-size: 0.9rem; color: #666; }
+
+/* ── buttons ──────────────────────────────────────────────── */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  background: #4361ee;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-decoration: none;
+}
+.btn:hover { background: #3451d1; text-decoration: none; color: #fff; }
+.btn-secondary { background: #6c757d; }
+.btn-secondary:hover { background: #565e64; }
+.mt { margin-top: 1rem; }
+
+/* ── alerts ───────────────────────────────────────────────── */
+.alert {
+  padding: 0.65rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+.alert-error { background: #fde8e8; color: #c0392b; border: 1px solid #f5c6c6; }
+.alert-info  { background: #e8f0fe; color: #1a56db; border: 1px solid #c3d5fc; }
+
+/* ── dashboard ────────────────────────────────────────────── */
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+.dashboard-header h2 { font-size: 1.3rem; }
+
+.admin-flag {
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  margin-bottom: 1.5rem;
+}
+.admin-flag code {
+  background: #fff3cd;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+/* ── notes grid ───────────────────────────────────────────── */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.note-card {
+  display: block;
+  background: #fff;
+  border: 1px solid #e0e4ef;
+  border-radius: 8px;
+  padding: 1rem;
+  color: inherit;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+.note-card:hover {
+  box-shadow: 0 2px 12px rgba(67,97,238,0.12);
+  border-color: #4361ee;
+  text-decoration: none;
+}
+.note-card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+.note-card p  { font-size: 0.85rem; color: #555; }
+.note-card small { font-size: 0.75rem; color: #aaa; margin-top: 0.5rem; display:block; }
+
+/* ── note view ────────────────────────────────────────────── */
+.note-view h2 { margin-bottom: 0.8rem; }
+.note-body    { white-space: pre-wrap; margin-bottom: 1rem; line-height: 1.7; }
+.note-info    { font-size: 0.8rem; color: #888; margin-bottom: 1rem; }
+
+/* ── search ───────────────────────────────────────────────── */
+.search-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+.search-row input { flex: 1; }
+.search-label { margin-bottom: 1rem; color: #555; }
+
+/* ── hero ─────────────────────────────────────────────────── */
+.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+.hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+.hero p   { color: #666; margin-bottom: 1.5rem; }
+.hero .btn { margin: 0 0.3rem; }
+
+/* ── misc ─────────────────────────────────────────────────── */
+.hint { color: #666; font-size: 0.9rem; margin-bottom: 1rem; }
+.empty-state { color: #888; margin-top: 1rem; }
+.note-meta { border-radius: 8px; padding: 1rem; border: 1px solid #e0e4ef; }
